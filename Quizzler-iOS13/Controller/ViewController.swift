@@ -11,8 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var trueBtn: UIButton!
-    @IBOutlet weak var falseBtn: UIButton!
+    @IBOutlet weak var btn1: UIButton!
+    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn3: UIButton!
+    
+    
     @IBOutlet weak var scoreLabel: UILabel!
     
     // initializing a new object from the quizBrain struct
@@ -20,7 +23,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        progressBar.progress = 0
     }
     
     @IBAction func answerBtnTapped(_ sender: UIButton) {
@@ -37,16 +39,23 @@ class ViewController: UIViewController {
         }
         quizBrain.nextQuestion()
         
-        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
     }
     
     @objc func updateUI ()
     {
         questionLabel.text = quizBrain.getQuestionText()
+        
+        let answerChoices = quizBrain.getAlternatives()
+        btn1.setTitle(answerChoices[0], for: .normal)
+        btn2.setTitle(answerChoices[1], for: .normal)
+        btn3.setTitle(answerChoices[2], for: .normal)
+        
         progressBar.setProgress(quizBrain.getProgress(), animated: true)
         scoreLabel.text = "Your Score: \(quizBrain.getScore())"
-        trueBtn.backgroundColor = UIColor.clear
-        falseBtn.backgroundColor = UIColor.clear
+        btn1.backgroundColor = UIColor.clear
+        btn2.backgroundColor = UIColor.clear
+        btn3.backgroundColor = UIColor.clear
     }
 }
 
