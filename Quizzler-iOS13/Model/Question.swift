@@ -14,8 +14,8 @@ import Foundation
     let rightAnswer: String
     
     init(q: String, a: [String], correctAnswer: String) {
-        text = q
-        answers = a
-        rightAnswer = correctAnswer
+        self.text = q
+        self.answers = a
+        self.rightAnswer = correctAnswer
     }
 }

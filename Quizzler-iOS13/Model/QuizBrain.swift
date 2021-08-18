@@ -43,13 +43,16 @@ struct QuizBrain {
     }
     
     // questionNumber is immutable by default, but we need to change it
-    // to get next Question. To do that add mutatin keyword
+    // to get next Question. To do that add mutating keyword
     mutating func nextQuestion() {
+        // if there is still questions to show, go to next one
         if(questionNumber + 1 < quiz.count) {
             questionNumber += 1
         }
         else{
+            // else go to the first question
             questionNumber = 0
+            currentScore = 0
         }
     }
     
